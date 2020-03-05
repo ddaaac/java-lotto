@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class MockAutoLottoTicketsFactoryTest {
+class MockAutoLottoTicketsGeneratorTest {
 	@Test
 	void create() {
 		// given
 		int autoTicketCount = 3;
-		MockAutoLottoTicketsFactory autoLottoTicketsFactory = MockAutoLottoTicketsFactory.of(autoTicketCount);
+		MockAutoLottoTicketsGenerator autoLottoTicketsFactory = MockAutoLottoTicketsGenerator.of(autoTicketCount);
 
 		// when
 		LottoTickets result = LottoTickets.of(autoLottoTicketsFactory);
