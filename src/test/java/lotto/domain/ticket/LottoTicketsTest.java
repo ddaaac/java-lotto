@@ -43,10 +43,10 @@ class LottoTicketsTest {
 		List<String> input = Arrays.asList("1,2,3,4,5,6",
 				"5,6,2,1,8,13",
 				"1,2,6,43,45,34");
-		ManualLottoTicketsFactory manualLottoTicketsFactory = ManualLottoTicketsFactory.of(input);
+		ManualLottoTicketsGenerator manualLottoTicketsGenerator = ManualLottoTicketsGenerator.of(input);
 
 		// when
-		LottoTickets result = LottoTickets.of(manualLottoTicketsFactory);
+		LottoTickets result = LottoTickets.of(manualLottoTicketsGenerator);
 
 		// then
 		List<SerialLottoNumber> expected = input.stream()
@@ -60,7 +60,7 @@ class LottoTicketsTest {
 	void createByRandom() {
 		// given
 		int input = 3;
-		MockAutoLottoTicketsFactory autoLottoTicketsFactory = MockAutoLottoTicketsFactory.of(input);
+		MockAutoLottoTicketsGenerator autoLottoTicketsFactory = MockAutoLottoTicketsGenerator.of(input);
 
 		// when
 		LottoTickets result = LottoTickets.of(autoLottoTicketsFactory);
@@ -116,14 +116,14 @@ class LottoTicketsTest {
 
 		// when
 		LottoTickets result
-				= LottoTickets.of(ManualLottoTicketsFactory.of(given1), ManualLottoTicketsFactory.of(given2));
+				= LottoTickets.of(ManualLottoTicketsGenerator.of(given1), ManualLottoTicketsGenerator.of(given2));
 
 		// then
 		List<String> expectedInput = new ArrayList<>();
 		expectedInput.addAll(given1);
 		expectedInput.addAll(given2);
 
-		LottoTickets expected = LottoTickets.of(ManualLottoTicketsFactory.of(expectedInput));
+		LottoTickets expected = LottoTickets.of(ManualLottoTicketsGenerator.of(expectedInput));
 		Assertions.assertThat(result).isEqualTo(expected);
 	}
 }

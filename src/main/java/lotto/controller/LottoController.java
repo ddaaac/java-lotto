@@ -6,9 +6,9 @@ import lotto.domain.number.LottoNumber;
 import lotto.domain.number.SerialLottoNumber;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.Winning;
-import lotto.domain.ticket.AutoLottoTicketsFactory;
+import lotto.domain.ticket.AutoLottoTicketsGenerator;
 import lotto.domain.ticket.LottoTickets;
-import lotto.domain.ticket.ManualLottoTicketsFactory;
+import lotto.domain.ticket.ManualLottoTicketsGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,13 +32,13 @@ public class LottoController {
 	}
 
 	private static LottoTickets createLottoTickets(TicketCount ticketCount) {
-		ManualLottoTicketsFactory manualLottoTicketsFactory
-				= ManualLottoTicketsFactory.of(InputView.inputManualLottoTicket(ticketCount.getManualTicketCount()));
+		ManualLottoTicketsGenerator manualLottoTicketsGenerator
+				= ManualLottoTicketsGenerator.of(InputView.inputManualLottoTicket(ticketCount.getManualTicketCount()));
 
-		AutoLottoTicketsFactory autoLottoTicketsFactory
-				= AutoLottoTicketsFactory.of(ticketCount.getAutoTicketCount());
+		AutoLottoTicketsGenerator autoLottoTicketsGenerator
+				= AutoLottoTicketsGenerator.of(ticketCount.getAutoTicketCount());
 
-		LottoTickets lottoTickets = LottoTickets.of(manualLottoTicketsFactory, autoLottoTicketsFactory);
+		LottoTickets lottoTickets = LottoTickets.of(manualLottoTicketsGenerator, autoLottoTicketsGenerator);
 
 		OutputView.printLottoTicketsCount(ticketCount.getManualTicketCount(), ticketCount.getAutoTicketCount());
 		OutputView.printLottoTickets(lottoTickets);
